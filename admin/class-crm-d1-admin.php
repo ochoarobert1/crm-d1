@@ -20,84 +20,105 @@
  * @subpackage Crm_D1/admin
  * @author     Robert Ochoa <ochoa.robert1@gmail.com>
  */
-class Crm_D1_Admin {
+class Crm_D1_Admin
+{
+    /**
+     * The ID of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $plugin_name    The ID of this plugin.
+     */
+    private $plugin_name;
 
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
-	 */
-	private $plugin_name;
+    /**
+     * The version of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $version    The current version of this plugin.
+     */
+    private $version;
 
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
-	private $version;
+    /**
+     * Initialize the class and set its properties.
+     *
+     * @since    1.0.0
+     * @param      string    $plugin_name       The name of this plugin.
+     * @param      string    $version    The version of this plugin.
+     */
+    public function __construct($plugin_name, $version)
+    {
+        $this->plugin_name = $plugin_name;
+        $this->version = $version;
+    }
 
-	/**
-	 * Initialize the class and set its properties.
-	 *
-	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
-	 */
-	public function __construct( $plugin_name, $version ) {
+    /**
+     * Register the stylesheets for the admin area.
+     *
+     * @since    1.0.0
+     */
+    public function enqueue_styles()
+    {
+        /**
+         * This function is provided for demonstration purposes only.
+         *
+         * An instance of this class should be passed to the run() function
+         * defined in Crm_D1_Loader as all of the hooks are defined
+         * in that particular class.
+         *
+         * The Crm_D1_Loader will then create the relationship
+         * between the defined hooks and the functions defined in this
+         * class.
+         */
 
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/crm-d1-admin.css', array(), $this->version, 'all');
+    }
 
-	}
+    /**
+     * Register the JavaScript for the admin area.
+     *
+     * @since    1.0.0
+     */
+    public function enqueue_scripts()
+    {
+        /**
+         * This function is provided for demonstration purposes only.
+         *
+         * An instance of this class should be passed to the run() function
+         * defined in Crm_D1_Loader as all of the hooks are defined
+         * in that particular class.
+         *
+         * The Crm_D1_Loader will then create the relationship
+         * between the defined hooks and the functions defined in this
+         * class.
+         */
 
-	/**
-	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_styles() {
+        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/crm-d1-admin.js', array( 'jquery' ), $this->version, false);
+    }
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Crm_D1_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Crm_D1_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+    /**
+     * Method crm_custom_menu
+     *
+     * @return void
+     */
+    public function crm_custom_menu()
+    {
+        add_menu_page(
+            __('CRM - Escritorio', 'crm-d1'),
+            __('CRM', 'crm-d1'),
+            'manage_options',
+            'dashboard',
+            array($this, 'crm_dashboard'),
+            '',
+            121
+        );
+    }
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/crm-d1-admin.css', array(), $this->version, 'all' );
-
-	}
-
-	/**
-	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Crm_D1_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Crm_D1_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/crm-d1-admin.js', array( 'jquery' ), $this->version, false );
-
-	}
-
+    public function crm_dashboard()
+    {
+        require_once('partials/crm-d1-admin-header.php');
+        require_once('partials/crm-d1-admin-dashboard.php');
+        require_once('partials/crm-d1-admin-footer.php');
+    }
 }

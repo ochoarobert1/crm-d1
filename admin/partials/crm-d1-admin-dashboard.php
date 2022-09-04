@@ -12,5 +12,6 @@
  * @subpackage Crm_D1/admin/partials
  */
 ?>
-
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<div class="custom-content">
+    <p>Este es el content</p>
+</div>
