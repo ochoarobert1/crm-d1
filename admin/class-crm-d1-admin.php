@@ -51,6 +51,8 @@ class Crm_D1_Admin
     {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
+
+		$this->loader = new Crm_D1_Loader();
     }
 
     /**
@@ -108,17 +110,70 @@ class Crm_D1_Admin
             __('CRM - Escritorio', 'crm-d1'),
             __('CRM', 'crm-d1'),
             'manage_options',
-            'dashboard',
+            $this->plugin_name,
             array($this, 'crm_dashboard'),
             '',
             121
         );
+
+        add_submenu_page(
+            $this->plugin_name,
+            __('Contactos', 'crm-d1'),
+            __('Contactos', 'crm-d1'),
+            'manage_options',
+            'edit.php?post_type=contactos',
+            null,
+            1
+        );
+
+        add_submenu_page(
+            $this->plugin_name,
+            __('Tipos de Contacto', 'crm-d1'),
+            __('Tipos de Contactos', 'crm-d1'),
+            'manage_options',
+            'edit-tags.php?taxonomy=tipo-cliente',
+            null,
+            2
+        );
     }
 
+    /**
+     * Method crm_dashboard
+     *
+     * @return void
+     */
     public function crm_dashboard()
     {
         require_once('partials/crm-d1-admin-header.php');
         require_once('partials/crm-d1-admin-dashboard.php');
         require_once('partials/crm-d1-admin-footer.php');
+    }
+
+    /**
+     * Method crm_custom_meta_box
+     *
+     * @param $post_type $post_type [explicite description]
+     *
+     * @return void
+     */
+    public function crm_custom_meta_box()
+    {
+        add_meta_box(
+            'some_meta_box_name',
+            __('información Principal', 'crm-d1'),
+            array( $this, 'render_basic_info_content' ),
+            'contactos',
+            'advanced',
+            'high'
+        );
+    }
+
+    public function render_basic_info_content($post)
+    {
+        wp_nonce_field('myplugin_inner_custom_box', 'myplugin_inner_custom_box_nonce');
+
+        $value = get_post_meta($post->ID, '_my_meta_value_key', true);
+
+        echo $this->loader->custom_meta_box_input('fname', 'Nombres', $value, 'text', array());
     }
 }

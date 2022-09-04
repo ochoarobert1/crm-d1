@@ -117,6 +117,11 @@ class Crm_D1
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-crm-d1-admin.php';
 
         /**
+         * The class responsible for custom post types and taxonomies
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crm-d1-cpt.php';
+
+        /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
@@ -151,11 +156,15 @@ class Crm_D1
     private function define_admin_hooks()
     {
         $plugin_admin = new Crm_D1_Admin($this->get_plugin_name(), $this->get_version());
+        $plugin_cpt = new Crm_D1_CPT($this->get_plugin_name(), $this->get_version());
 
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 
+        $this->loader->add_action('init', $plugin_cpt, 'crm_d1_contactos', 0);
         $this->loader->add_action('admin_menu', $plugin_admin, 'crm_custom_menu', 99);
+
+        $this->loader->add_action('add_meta_boxes', $plugin_admin, 'crm_custom_meta_box', 10);
     }
 
     /**
