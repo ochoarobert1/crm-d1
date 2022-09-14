@@ -1,4 +1,23 @@
-/**
- * All of the CSS for your admin-specific functionality should be
- * included in this file.
- */
+.custom-input-wrapper .custom-input-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.custom-input-wrapper .custom-input-form-container * {
+  flex: 0 0 60%;
+}
+.custom-input-wrapper .custom-input-form-container label {
+  flex: 0 0 30%;
+}
+.custom-input-wrapper .custom-input-form-container:last-child {
+  margin-bottom: 0;
+}
+.custom-input-side-wrapper .custom-input-form-container * {
+  flex: 0 0 100%;
+}
+.custom-input-side-wrapper .custom-input-form-container label {
+  flex: 0 0 100%;
+  margin-bottom: 10px;
+}

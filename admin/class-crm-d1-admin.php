@@ -52,7 +52,7 @@ class Crm_D1_Admin
         $this->plugin_name = $plugin_name;
         $this->version = $version;
 
-		$this->loader = new Crm_D1_Loader();
+        $this->loader = new Crm_D1_Loader();
     }
 
     /**
@@ -159,21 +159,117 @@ class Crm_D1_Admin
     public function crm_custom_meta_box()
     {
         add_meta_box(
-            'some_meta_box_name',
-            __('información Principal', 'crm-d1'),
+            'seller_info',
+            __('Información del Vendedor', 'crm-d1'),
+            array( $this, 'render_seller_info_content' ),
+            'contactos',
+            'side',
+            'high'
+        );
+
+        add_meta_box(
+            'contact_info',
+            __('Información del Contacto', 'crm-d1'),
             array( $this, 'render_basic_info_content' ),
+            'contactos',
+            'advanced',
+            'high'
+        );
+
+        add_meta_box(
+            'phase_1_info',
+            __('Fase 1 - Ventas', 'crm-d1'),
+            array( $this, 'render_phase1_info_content' ),
             'contactos',
             'advanced',
             'high'
         );
     }
 
-    public function render_basic_info_content($post)
+
+    public function render_seller_info_content($post)
     {
         wp_nonce_field('myplugin_inner_custom_box', 'myplugin_inner_custom_box_nonce');
+        ?>
+        <div class="custom-input-wrapper custom-input-side-wrapper">
+            <?php
+                $value = get_post_meta($post->ID, 'unique_id', true);
+        echo $this->loader->custom_meta_box_input('unique_id', 'Identificador Único', $value, 'text', array());
 
-        $value = get_post_meta($post->ID, '_my_meta_value_key', true);
+        $value = get_post_meta($post->ID, 'seller', true);
+        echo $this->loader->custom_meta_box_input('seller', 'Vendedor a Cargo', $value, 'text', array());
+        ?>
 
-        echo $this->loader->custom_meta_box_input('fname', 'Nombres', $value, 'text', array());
+        </div>
+        <?php
     }
+
+    public function render_basic_info_content($post)
+    {
+        ?>
+        <div class="custom-input-wrapper">
+            <?php
+        $value = get_post_meta($post->ID, 'nombres', true);
+        echo $this->loader->custom_meta_box_input('nombres', 'Nombres', $value, 'text', array());
+
+        $value = get_post_meta($post->ID, 'apellidos', true);
+        echo $this->loader->custom_meta_box_input('apellidos', 'Apellidos', $value, 'text', array());
+
+        $value = get_post_meta($post->ID, 'telefono', true);
+        echo $this->loader->custom_meta_box_input('telefono', 'Telefono', $value, 'tel', array());
+
+        $value = get_post_meta($post->ID, 'email', true);
+        echo $this->loader->custom_meta_box_input('email', 'Correo Electrónico', $value, 'email', array());
+
+        $value = get_post_meta($post->ID, 'direccion', true);
+        echo $this->loader->custom_meta_box_input('direccion', 'Direccion de Habitación', $value, 'textarea', array());
+
+        $value = get_post_meta($post->ID, 'lugar_trabajo', true);
+        echo $this->loader->custom_meta_box_input('lugar_trabajo', 'Lugar de Trabajo', $value, 'text', array());
+
+        $value = get_post_meta($post->ID, 'ingreso', true);
+        echo $this->loader->custom_meta_box_input('ingreso', 'Salario Actual', $value, 'text', array());
+
+        $value = get_post_meta($post->ID, 'referencia', true);
+        echo $this->loader->custom_meta_box_input('referencia', 'Contacto de Referencia', $value, 'text', array());
+        ?>
+        </div>
+        <?php
+    }
+
+    public function render_phase1_info_content($post)
+    {
+        ?>
+        <div class="custom-input-wrapper">
+            <?php
+        $value = get_post_meta($post->ID, 'info_enviada', true);
+        echo $this->loader->custom_meta_box_input('info_enviada', 'Información Enviada y Seguimiento', $value, 'text', array());
+
+        $value = get_post_meta($post->ID, 'conf_visita', true);
+        echo $this->loader->custom_meta_box_input('conf_visita', 'Confirmación de Visita', $value, 'text', array());
+
+        $value = get_post_meta($post->ID, 'cot_banco', true);
+        echo $this->loader->custom_meta_box_input('cot_banco', 'Cotización del Banco', $value, 'text', array());
+
+        $value = get_post_meta($post->ID, 'email', true);
+        echo $this->loader->custom_meta_box_input('email', 'Correo Electrónico', $value, 'email', array());
+
+        $value = get_post_meta($post->ID, 'direccion', true);
+        echo $this->loader->custom_meta_box_input('direccion', 'Direccion de Habitación', $value, 'textarea', array());
+
+        $value = get_post_meta($post->ID, 'lugar_trabajo', true);
+        echo $this->loader->custom_meta_box_input('lugar_trabajo', 'Lugar de Trabajo', $value, 'text', array());
+
+        $value = get_post_meta($post->ID, 'ingreso', true);
+        echo $this->loader->custom_meta_box_input('ingreso', 'Salario Actual', $value, 'text', array());
+
+        $value = get_post_meta($post->ID, 'referencia', true);
+        echo $this->loader->custom_meta_box_input('referencia', 'Contacto de Referencia', $value, 'text', array());
+        ?>
+        </div>
+        <?php
+    }
+
+
+
 }
