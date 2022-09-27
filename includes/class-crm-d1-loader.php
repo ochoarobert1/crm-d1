@@ -147,7 +147,7 @@ class Crm_D1_Loader
     <label for="<?php echo $id; ?>">
         <?php echo $name ?>
     </label>
-    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo esc_attr($value); ?>" class="custom-form-control" />
+    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" />
     <?php
             break;
 
@@ -156,7 +156,7 @@ class Crm_D1_Loader
     <label for="<?php echo $id; ?>">
         <?php echo $name ?>
     </label>
-    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo esc_attr($value); ?>" class="custom-form-control" />
+    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" />
     <?php
             break;
 
@@ -165,7 +165,7 @@ class Crm_D1_Loader
     <label for="<?php echo $id; ?>">
         <?php echo $name ?>
     </label>
-    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo esc_attr($value); ?>" class="custom-form-control" />
+    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" />
     <?php
             break;
 
@@ -174,7 +174,7 @@ class Crm_D1_Loader
     <label for="<?php echo $id; ?>">
         <?php echo $name ?>
     </label>
-    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo esc_attr($value); ?>" class="custom-form-control" />
+    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" />
     <?php
             break;
     }?>

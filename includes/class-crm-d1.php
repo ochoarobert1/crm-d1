@@ -165,6 +165,7 @@ class Crm_D1
         $this->loader->add_action('admin_menu', $plugin_admin, 'crm_custom_menu', 99);
 
         $this->loader->add_action('add_meta_boxes', $plugin_admin, 'crm_custom_meta_box', 10);
+        $this->loader->add_action('save_post', $plugin_admin, 'save_metabox', 10, 2);
     }
 
     /**
