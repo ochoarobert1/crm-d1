@@ -1,4 +1,56 @@
+/* --------------------------------------------------------------
+/* MAIN LESS MIXINS AND FUNCTIONS - LESSHAT
+-------------------------------------------------------------- */
+/* --------------------------------------------------------------
+VARIABLES
+-------------------------------------------------------------- */
+/* --------------------------------------------------------------
+CUSTOM POST METABOX
+-------------------------------------------------------------- */
+.post-type-contactos #postbox-container-2 .postbox-header {
+  border-bottom: 0;
+  background: #302d2d;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.post-type-contactos #postbox-container-2 .postbox-header h2 {
+  color: #FFF;
+  font-size: 1rem !important;
+  font-weight: 600;
+  padding: 12px 15px;
+}
+.post-type-contactos #postbox-container-2 .postbox {
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 5px 5px 16px #e1e1e1;
+  margin-bottom: 2rem;
+  background: #fbfbfb;
+  padding: 0;
+}
+.post-type-contactos #postbox-container-2 .postbox .inside {
+  margin: 15px 0 0;
+  padding-bottom: 20px;
+}
+.custom-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.custom-input-wrapper .custom-input-col-3 {
+  flex: 0 0 33%;
+  margin-bottom: 1.5rem;
+}
+.custom-input-wrapper .custom-input-col-6 {
+  flex: 0 0 50%;
+  margin-bottom: 1.5rem;
+}
+.custom-input-wrapper .custom-input-col-12 {
+  flex: 0 0 100%;
+  margin-bottom: 1.5rem;
+}
 .custom-input-wrapper .custom-input-form-container {
+  flex: 0 0 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7,15 +59,44 @@
 }
 .custom-input-wrapper .custom-input-form-container * {
   flex: 0 0 60%;
+  padding: 6px 12px;
+  color: #444;
+  border-color: #CBCBCB;
+}
+.custom-input-wrapper .custom-input-form-container textarea {
+  border: 1px solid #CBCBCB;
 }
 .custom-input-wrapper .custom-input-form-container label {
   flex: 0 0 30%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.custom-input-wrapper .custom-input-form-container label .dashicons {
+  flex: 0;
+  font-size: 0.9rem;
+  padding: 2px 0 0 2px;
+  line-height: 1.2rem;
 }
 .custom-input-wrapper .custom-input-form-container:last-child {
   margin-bottom: 0;
 }
+.custom-input-wrapper .custom-form-control-blocked {
+  display: block;
+  background: #e7e7e7;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  font-family: monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 .custom-input-side-wrapper .custom-input-form-container * {
   flex: 0 0 100%;
+  padding: 6px 12px;
+  color: #444;
+  border-color: #CBCBCB;
 }
 .custom-input-side-wrapper .custom-input-form-container label {
   flex: 0 0 100%;

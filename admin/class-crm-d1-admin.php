@@ -98,6 +98,16 @@ class Crm_D1_Admin
 
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/crm-d1-admin.js', array( 'jquery' ), $this->version, false);
     }
+    
+    /**
+     * Method update_edit_form
+     *
+     * @return void
+     */
+    public function update_edit_form() {
+        echo ' enctype="multipart/form-data"';
+    } // end update_edit_form
+
 
     /**
      * Method crm_custom_menu
@@ -163,77 +173,14 @@ class Crm_D1_Admin
             __('Información del Vendedor', 'crm-d1'),
             array( $this, 'render_seller_info_content' ),
             'contactos',
-            'side',
+            'normal',
             'high'
         );
 
         add_meta_box(
             'contact_info',
-            __('Información del Contacto', 'crm-d1'),
+            __('Información Básica del Contacto', 'crm-d1'),
             array( $this, 'render_basic_info_content' ),
-            'contactos',
-            'advanced',
-            'high'
-        );
-
-        add_meta_box(
-            'phase_1_info',
-            __('Fase 1 - Ventas', 'crm-d1'),
-            array( $this, 'render_phase1_info_content' ),
-            'contactos',
-            'advanced',
-            'high'
-        );
-
-        add_meta_box(
-            'phase_2_info',
-            __('Fase 2 - Datos del Inmueble', 'crm-d1'),
-            array( $this, 'render_phase2_info_content' ),
-            'contactos',
-            'advanced',
-            'high'
-        );
-
-        add_meta_box(
-            'phase_3_info',
-            __('Fase 3 - MIVIOT', 'crm-d1'),
-            array( $this, 'render_phase3_info_content' ),
-            'contactos',
-            'advanced',
-            'high'
-        );
-
-        add_meta_box(
-            'phase_4_info',
-            __('Fase 4 - Fase Legal', 'crm-d1'),
-            array( $this, 'render_phase4_info_content' ),
-            'contactos',
-            'advanced',
-            'high'
-        );
-
-        add_meta_box(
-            'phase_5_info',
-            __('Fase 5 - Fase Cobros', 'crm-d1'),
-            array( $this, 'render_phase5_info_content' ),
-            'contactos',
-            'advanced',
-            'high'
-        );
-
-        add_meta_box(
-            'phase_6_info',
-            __('Fase 6 - Fase Entregas', 'crm-d1'),
-            array( $this, 'render_phase6_info_content' ),
-            'contactos',
-            'advanced',
-            'high'
-        );
-
-        add_meta_box(
-            'phase_7_info',
-            __('Fase 7 - Fase Servicios', 'crm-d1'),
-            array( $this, 'render_phase7_info_content' ),
             'contactos',
             'advanced',
             'high'
@@ -245,10 +192,11 @@ class Crm_D1_Admin
     {
         wp_nonce_field('myplugin_inner_custom_box', 'myplugin_inner_custom_box_nonce');
         ?>
-        <div class="custom-input-wrapper custom-input-side-wrapper">
+        <div class="custom-input-wrapper custom-input-seller-wrapper">
             <?php
         $value = get_post_meta($post->ID, 'unique_id', true);
-        echo $this->loader->custom_meta_box_input('unique_id', 'Identificador Único', $value, 'text', array());
+        $code = ($value == '') ? uniqid('crm_') : $value;
+        echo $this->loader->custom_meta_box_input('unique_id', 'Identificador Único', $code, 'blocked', array());
 
         $value = get_post_meta($post->ID, 'seller', true);
         echo $this->loader->custom_meta_box_input('seller', 'Vendedor a Cargo', $value, 'text', array());
@@ -264,13 +212,13 @@ class Crm_D1_Admin
         <div class="custom-input-wrapper">
             <?php
         $value = get_post_meta($post->ID, 'nombres', true);
-        echo $this->loader->custom_meta_box_input('nombres', 'Nombres', $value, 'text', array());
+        echo $this->loader->custom_meta_box_input('nombres', 'Nombres', $value, 'text', array('placeholder' => __('Ingrese los nombres del contacto', 'crm-d1'), 'required' => true));
 
         $value = get_post_meta($post->ID, 'apellidos', true);
-        echo $this->loader->custom_meta_box_input('apellidos', 'Apellidos', $value, 'text', array());
+        echo $this->loader->custom_meta_box_input('apellidos', 'Apellidos', $value, 'text', array('placeholder' => __('Ingrese los apellidos del contacto', 'crm-d1'), 'required' => true));
 
         $value = get_post_meta($post->ID, 'telefono', true);
-        echo $this->loader->custom_meta_box_input('telefono', 'Telefono', $value, 'tel', array());
+        echo $this->loader->custom_meta_box_input('telefono', 'Telefono', $value, 'tel', array('placeholder' => __('Ingrese el número telefónico del contacto', 'crm-d1'), 'required' => true, 'tooltip' => __('Ingrese el número telefónico con código de área', 'crm-d1')));
 
         $value = get_post_meta($post->ID, 'email', true);
         echo $this->loader->custom_meta_box_input('email', 'Correo Electrónico', $value, 'email', array());
@@ -286,214 +234,6 @@ class Crm_D1_Admin
 
         $value = get_post_meta($post->ID, 'referencia', true);
         echo $this->loader->custom_meta_box_input('referencia', 'Contacto de Referencia', $value, 'text', array());
-        ?>
-        </div>
-        <?php
-    }
-
-    public function render_phase1_info_content($post)
-    {
-        ?>
-        <div class="custom-input-wrapper">
-            <?php
-        $value = get_post_meta($post->ID, 'info_enviada', true);
-        echo $this->loader->custom_meta_box_input('info_enviada', 'Información Enviada y Seguimiento', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'conf_visita', true);
-        echo $this->loader->custom_meta_box_input('conf_visita', 'Confirmación de Visita', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'cot_banco', true);
-        echo $this->loader->custom_meta_box_input('cot_banco', 'Cotización del Banco', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'pro_venta', true);
-        echo $this->loader->custom_meta_box_input('pro_venta', 'Proforma de Venta', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'banco_cliente', true);
-        echo $this->loader->custom_meta_box_input('banco_cliente', 'Banco del Cliente', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'seguimiento_banco', true);
-        echo $this->loader->custom_meta_box_input('seguimiento_banco', 'Seguimiento del Banco', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'carta_terminos', true);
-        echo $this->loader->custom_meta_box_input('carta_terminos', 'Carta de Términos y Condiciones', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'carta_promesa', true);
-        echo $this->loader->custom_meta_box_input('carta_promesa', 'Carta Promesa', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'carta_cesion', true);
-        echo $this->loader->custom_meta_box_input('carta_cesion', 'Carta Sesión', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'ficha_cliente', true);
-        echo $this->loader->custom_meta_box_input('ficha_cliente', 'Expediente Completo / Ficha de Cliente', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'contrato_compraventa', true);
-        echo $this->loader->custom_meta_box_input('contrato_compraventa', 'Contrato Compra/Venta', $value, 'text', array());
-
-        ?>
-        </div>
-        <?php
-    }
-
-    public function render_phase2_info_content($post)
-    {
-        ?>
-        <div class="custom-input-wrapper">
-            <?php
-
-        $value = get_post_meta($post->ID, 'datos_inmueble', true);
-        echo $this->loader->custom_meta_box_input('datos_inmueble', 'Datos del Inmueble', $value, 'text', array());
-
-        ?>
-        </div>
-        <?php
-    }
-
-    public function render_phase3_info_content($post)
-    {
-        ?>
-        <div class="custom-input-wrapper">
-            <?php
-
-        $value = get_post_meta($post->ID, 'declaracion_jurada', true);
-        echo $this->loader->custom_meta_box_input('declaracion_jurada', 'Declaración Jurada', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'cedula_titular', true);
-        echo $this->loader->custom_meta_box_input('cedula_titular', 'Cédula Titular', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'cedula_certificado', true);
-        echo $this->loader->custom_meta_box_input('cedula_certificado', 'Cédula del Beneficiario / Certificado de Nacimiento', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'carta_trabajo', true);
-        echo $this->loader->custom_meta_box_input('carta_trabajo', 'Carta de Trabajo', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'ficha_css', true);
-        echo $this->loader->custom_meta_box_input('ficha_css', 'Ficha CSS', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'carta_aprobacion_banco', true);
-        echo $this->loader->custom_meta_box_input('carta_aprobacion_banco', 'Carta Aprobación del Banco', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'cert_no_propiedad', true);
-        echo $this->loader->custom_meta_box_input('cert_no_propiedad', 'Certificado de No Propiedad del Registro Público', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'contrato_compraventa', true);
-        echo $this->loader->custom_meta_box_input('contrato_compraventa', 'Contrato de Compra/Venta firmado por ambas partes', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'seguimiento_fase3', true);
-        echo $this->loader->custom_meta_box_input('seguimiento_fase3', 'Seguimiento', $value, 'text', array());
-
-        ?>
-        </div>
-        <?php
-    }
-
-    public function render_phase4_info_content($post)
-    {
-        ?>
-        <div class="custom-input-wrapper">
-            <?php
-
-        $value = get_post_meta($post->ID, 'minuta_cancelacion_banco_interino', true);
-        echo $this->loader->custom_meta_box_input('minuta_cancelacion_banco_interino', 'Minuta de Cancelación Banco Interino', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'minuta_compraventa_promotora', true);
-        echo $this->loader->custom_meta_box_input('minuta_compraventa_promotora', 'Minuta de Compra/Venta de Promotora', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'minuta_prestamo_banco', true);
-        echo $this->loader->custom_meta_box_input('minuta_prestamo_banco', 'Minuta de Prestamo (Banco cliente)', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'protocolo_escritura', true);
-        echo $this->loader->custom_meta_box_input('protocolo_escritura', 'Protocolo de Escritura', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'firma_protocolo_promotora', true);
-        echo $this->loader->custom_meta_box_input('firma_protocolo_promotora', 'Firma de Protocolo por Promotora', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'firma_protocolo_banco', true);
-        echo $this->loader->custom_meta_box_input('firma_protocolo_banco', 'Firma de Protocolo por Banco Interino', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'firma_protocolo_cliente', true);
-        echo $this->loader->custom_meta_box_input('firma_protocolo_cliente', 'Firma de Protocolo por Cliente', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'firma_protocolo_banco_cliente', true);
-        echo $this->loader->custom_meta_box_input('firma_protocolo_banco_cliente', 'Firma de Protocolo por Banco del Cliente', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'pago_impuestos', true);
-        echo $this->loader->custom_meta_box_input('pago_impuestos', 'Pagos de Impuestos', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'cierre_escritura_notaria', true);
-        echo $this->loader->custom_meta_box_input('cierre_escritura_notaria', 'Cierre Escritura en Notaría', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'inscripcion_cierre_registro', true);
-        echo $this->loader->custom_meta_box_input('inscripcion_cierre_registro', 'Inscripción de Escritura en Registro Público', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'desembolso_prestamo', true);
-        echo $this->loader->custom_meta_box_input('desembolso_prestamo', 'Desembolso Préstamo', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'desembolso_prestamo', true);
-        echo $this->loader->custom_meta_box_input('desembolso_prestamo', 'Desembolso del Préstamo', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'entrega_vivienda', true);
-        echo $this->loader->custom_meta_box_input('entrega_vivienda', 'Entrega de Vivienda', $value, 'text', array());
-
-        ?>
-        </div>
-        <?php
-    }
-
-    public function render_phase5_info_content($post)
-    {
-        ?>
-        <div class="custom-input-wrapper">
-            <?php
-
-        $value = get_post_meta($post->ID, 'cobros_reservas', true);
-        echo $this->loader->custom_meta_box_input('cobros_reservas', 'Reservas', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'abono_inicial', true);
-        echo $this->loader->custom_meta_box_input('abono_inicial', 'Abono Inicial', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'gastos_legales', true);
-        echo $this->loader->custom_meta_box_input('gastos_legales', 'Gastos Legales', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'gastos_extras', true);
-        echo $this->loader->custom_meta_box_input('gastos_extras', 'Extras', $value, 'text', array());
-
-        ?>
-        </div>
-        <?php
-    }
-
-    public function render_phase6_info_content($post)
-    {
-        ?>
-        <div class="custom-input-wrapper">
-            <?php
-
-        $value = get_post_meta($post->ID, 'coordinacion_cliente', true);
-        echo $this->loader->custom_meta_box_input('coordinacion_cliente', 'Coordinacion con el Cliente', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'entrega_llaves', true);
-        echo $this->loader->custom_meta_box_input('entrega_llaves', 'Entrega de llaves', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'garantias', true);
-        echo $this->loader->custom_meta_box_input('garantias', 'Garantías', $value, 'text', array());
-
-        ?>
-        </div>
-        <?php
-    }
-
-    public function render_phase7_info_content($post)
-    {
-        ?>
-        <div class="custom-input-wrapper">
-            <?php
-
-        $value = get_post_meta($post->ID, 'servicios_agua', true);
-        echo $this->loader->custom_meta_box_input('servicios_agua', 'Agua', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'servicios_ptar', true);
-        echo $this->loader->custom_meta_box_input('servicios_ptar', 'PTAR', $value, 'text', array());
-
         ?>
         </div>
         <?php
@@ -553,137 +293,5 @@ class Crm_D1_Admin
 
         $value = sanitize_text_field($_POST['referencia']);
         update_post_meta($post_id, 'referencia', $value);
-
-        $value = sanitize_text_field($_POST['info_enviada']);
-        update_post_meta($post_id, 'info_enviada', $value);
-
-        $value = sanitize_text_field($_POST['conf_visita']);
-        update_post_meta($post_id, 'conf_visita', $value);
-
-        $value = sanitize_text_field($_POST['cot_banco']);
-        update_post_meta($post_id, 'cot_banco', $value);
-
-        $value = sanitize_text_field($_POST['pro_venta']);
-        update_post_meta($post_id, 'pro_venta', $value);
-
-        $value = sanitize_text_field($_POST['banco_cliente']);
-        update_post_meta($post_id, 'banco_cliente', $value);
-
-        $value = sanitize_text_field($_POST['seguimiento_banco']);
-        update_post_meta($post_id, 'seguimiento_banco', $value);
-
-        $value = sanitize_text_field($_POST['carta_terminos']);
-        update_post_meta($post_id, 'carta_terminos', $value);
-
-        $value = sanitize_text_field($_POST['carta_promesa']);
-        update_post_meta($post_id, 'carta_promesa', $value);
-
-        $value = sanitize_text_field($_POST['carta_cesion']);
-        update_post_meta($post_id, 'carta_cesion', $value);
-
-        $value = sanitize_text_field($_POST['ficha_cliente']);
-        update_post_meta($post_id, 'ficha_cliente', $value);
-
-        $value = sanitize_text_field($_POST['contrato_compraventa']);
-        update_post_meta($post_id, 'contrato_compraventa', $value);
-
-        $value = sanitize_text_field($_POST['datos_inmueble']);
-        update_post_meta($post_id, 'datos_inmueble', $value);
-
-        $value = sanitize_text_field($_POST['declaracion_jurada']);
-        update_post_meta($post_id, 'declaracion_jurada', $value);
-
-        $value = sanitize_text_field($_POST['cedula_titular']);
-        update_post_meta($post_id, 'cedula_titular', $value);
-
-        $value = sanitize_text_field($_POST['cedula_certificado']);
-        update_post_meta($post_id, 'cedula_certificado', $value);
-
-        $value = sanitize_text_field($_POST['carta_trabajo']);
-        update_post_meta($post_id, 'carta_trabajo', $value);
-
-        $value = sanitize_text_field($_POST['ficha_css']);
-        update_post_meta($post_id, 'ficha_css', $value);
-
-        $value = sanitize_text_field($_POST['carta_aprobacion_banco']);
-        update_post_meta($post_id, 'carta_aprobacion_banco', $value);
-
-        $value = sanitize_text_field($_POST['cert_no_propiedad']);
-        update_post_meta($post_id, 'cert_no_propiedad', $value);
-
-        $value = sanitize_text_field($_POST['contrato_compraventa']);
-        update_post_meta($post_id, 'contrato_compraventa', $value);
-
-        $value = sanitize_text_field($_POST['seguimiento_fase3']);
-        update_post_meta($post_id, 'seguimiento_fase3', $value);
-
-        $value = sanitize_text_field($_POST['minuta_cancelacion_banco_interino']);
-        update_post_meta($post_id, 'minuta_cancelacion_banco_interino', $value);
-
-        $value = sanitize_text_field($_POST['minuta_compraventa_promotora']);
-        update_post_meta($post_id, 'minuta_compraventa_promotora', $value);
-
-        $value = sanitize_text_field($_POST['minuta_prestamo_banco']);
-        update_post_meta($post_id, 'minuta_prestamo_banco', $value);
-
-        $value = sanitize_text_field($_POST['protocolo_escritura']);
-        update_post_meta($post_id, 'protocolo_escritura', $value);
-
-        $value = sanitize_text_field($_POST['firma_protocolo_promotora']);
-        update_post_meta($post_id, 'firma_protocolo_promotora', $value);
-
-        $value = sanitize_text_field($_POST['firma_protocolo_banco']);
-        update_post_meta($post_id, 'firma_protocolo_banco', $value);
-
-        $value = sanitize_text_field($_POST['firma_protocolo_cliente']);
-        update_post_meta($post_id, 'firma_protocolo_cliente', $value);
-
-        $value = sanitize_text_field($_POST['firma_protocolo_banco_cliente']);
-        update_post_meta($post_id, 'firma_protocolo_banco_cliente', $value);
-
-        $value = sanitize_text_field($_POST['pago_impuestos']);
-        update_post_meta($post_id, 'pago_impuestos', $value);
-
-        $value = sanitize_text_field($_POST['cierre_escritura_notaria']);
-        update_post_meta($post_id, 'cierre_escritura_notaria', $value);
-
-        $value = sanitize_text_field($_POST['inscripcion_cierre_registro']);
-        update_post_meta($post_id, 'inscripcion_cierre_registro', $value);
-
-        $value = sanitize_text_field($_POST['desembolso_prestamo']);
-        update_post_meta($post_id, 'desembolso_prestamo', $value);
-
-        $value = sanitize_text_field($_POST['desembolso_prestamo']);
-        update_post_meta($post_id, 'desembolso_prestamo', $value);
-
-        $value = sanitize_text_field($_POST['entrega_vivienda']);
-        update_post_meta($post_id, 'entrega_vivienda', $value);
-
-        $value = sanitize_text_field($_POST['cobros_reservas']);
-        update_post_meta($post_id, 'cobros_reservas', $value);
-
-        $value = sanitize_text_field($_POST['abono_inicial']);
-        update_post_meta($post_id, 'abono_inicial', $value);
-
-        $value = sanitize_text_field($_POST['gastos_legales']);
-        update_post_meta($post_id, 'gastos_legales', $value);
-
-        $value = sanitize_text_field($_POST['gastos_extras']);
-        update_post_meta($post_id, 'gastos_extras', $value);
-
-        $value = sanitize_text_field($_POST['coordinacion_cliente']);
-        update_post_meta($post_id, 'coordinacion_cliente', $value);
-
-        $value = sanitize_text_field($_POST['entrega_llaves']);
-        update_post_meta($post_id, 'entrega_llaves', $value);
-
-        $value = sanitize_text_field($_POST['garantias']);
-        update_post_meta($post_id, 'garantias', $value);
-
-        $value = sanitize_text_field($_POST['servicios_agua']);
-        update_post_meta($post_id, 'servicios_agua', $value);
-
-        $value = sanitize_text_field($_POST['servicios_ptar']);
-        update_post_meta($post_id, 'servicios_ptar', $value);
     }
 }

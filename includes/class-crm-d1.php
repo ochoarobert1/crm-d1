@@ -122,6 +122,17 @@ class Crm_D1
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-crm-d1-cpt.php';
 
         /**
+         * Classes responsible for metabox in contactos
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/metaboxes/class-crm-d1-phase1.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/metaboxes/class-crm-d1-phase2.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/metaboxes/class-crm-d1-phase3.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/metaboxes/class-crm-d1-phase4.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/metaboxes/class-crm-d1-phase5.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/metaboxes/class-crm-d1-phase6.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/metaboxes/class-crm-d1-phase7.php';
+
+        /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
@@ -155,17 +166,50 @@ class Crm_D1
      */
     private function define_admin_hooks()
     {
+        // Main admin plugin file
         $plugin_admin = new Crm_D1_Admin($this->get_plugin_name(), $this->get_version());
+        // Multiple Phases Metabox Files
+        $plugin_phase1 = new Crm_D1_Admin_Phase1($this->get_plugin_name(), $this->get_version());
+        $plugin_phase2 = new Crm_D1_Admin_Phase2($this->get_plugin_name(), $this->get_version());
+        $plugin_phase3 = new Crm_D1_Admin_Phase3($this->get_plugin_name(), $this->get_version());
+        $plugin_phase4 = new Crm_D1_Admin_Phase4($this->get_plugin_name(), $this->get_version());
+        $plugin_phase5 = new Crm_D1_Admin_Phase5($this->get_plugin_name(), $this->get_version());
+        $plugin_phase6 = new Crm_D1_Admin_Phase6($this->get_plugin_name(), $this->get_version());
+        $plugin_phase7 = new Crm_D1_Admin_Phase7($this->get_plugin_name(), $this->get_version());
+        // CPT File
         $plugin_cpt = new Crm_D1_CPT($this->get_plugin_name(), $this->get_version());
+
+        $this->loader->add_action('init', $plugin_cpt, 'crm_d1_contactos', 0);
 
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 
-        $this->loader->add_action('init', $plugin_cpt, 'crm_d1_contactos', 0);
         $this->loader->add_action('admin_menu', $plugin_admin, 'crm_custom_menu', 99);
+        $this->loader->add_action('post_edit_form_tag', $plugin_admin, 'update_edit_form');
 
         $this->loader->add_action('add_meta_boxes', $plugin_admin, 'crm_custom_meta_box', 10);
-        $this->loader->add_action('save_post', $plugin_admin, 'save_metabox', 10, 2);
+        $this->loader->add_action('save_post_contactos', $plugin_admin, 'save_metabox', 10, 2);
+
+        $this->loader->add_action('add_meta_boxes', $plugin_phase1, 'crm_custom_meta_box', 10);
+        $this->loader->add_action('save_post_contactos', $plugin_phase1, 'save_metabox', 10, 2);
+
+        $this->loader->add_action('add_meta_boxes', $plugin_phase2, 'crm_custom_meta_box', 10);
+        $this->loader->add_action('save_post_contactos', $plugin_phase2, 'save_metabox', 10, 2);
+
+        $this->loader->add_action('add_meta_boxes', $plugin_phase3, 'crm_custom_meta_box', 10);
+        $this->loader->add_action('save_post_contactos', $plugin_phase3, 'save_metabox', 10, 2);
+
+        $this->loader->add_action('add_meta_boxes', $plugin_phase4, 'crm_custom_meta_box', 10);
+        $this->loader->add_action('save_post_contactos', $plugin_phase4, 'save_metabox', 10, 2);
+
+        $this->loader->add_action('add_meta_boxes', $plugin_phase5, 'crm_custom_meta_box', 10);
+        $this->loader->add_action('save_post_contactos', $plugin_phase5, 'save_metabox', 10, 2);
+
+        $this->loader->add_action('add_meta_boxes', $plugin_phase6, 'crm_custom_meta_box', 10);
+        $this->loader->add_action('save_post_contactos', $plugin_phase6, 'save_metabox', 10, 2);
+
+        $this->loader->add_action('add_meta_boxes', $plugin_phase7, 'crm_custom_meta_box', 10);
+        $this->loader->add_action('save_post_contactos', $plugin_phase7, 'save_metabox', 10, 2);
     }
 
     /**

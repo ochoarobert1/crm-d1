@@ -136,45 +136,93 @@ class Crm_D1_Loader
      *
      * @return void
      */
-    public function custom_meta_box_input($id, $name, $value, $type, $class)
+    public function custom_meta_box_input($id, $name, $value, $type, $atts)
     {
+        $atts = shortcode_atts(
+            array(
+                'placeholder' => __('Ingrese los datos', 'crm-d1'),
+                'required' => false,
+                'class' => '',
+                'tooltip' => '',
+                'options' => array()
+            ),
+            $atts
+        );
+
         ob_start();
         ?>
-<div class="custom-input-form-container <?php echo join(' ', $class); ?>">
+<div class="custom-input-form-container <?php echo $atts['class']; ?>">
     <?php switch ($type) {
+        case 'blocked':
+            ?>
+    <label for="<?php echo $id; ?>">
+        <?php echo $name ?> <?php if ($atts['tooltip'] != '') { ?> <span class="dashicons dashicons-warning" tooltip="<?php echo $atts['tooltip']; ?>"></span> <?php } ?>
+    </label>
+    <span class="custom-form-control custom-form-control-blocked"><?php echo $value; ?></span>
+    <input type="hidden" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" <?php echo ($atts['required'] == true) ? 'required="required"' : ''; ?> placeholder="<?php echo $atts['placeholder']; ?>" />
+    <?php
+            break;
+        case 'textarea':
+            ?>
+    <label for="<?php echo $id; ?>">
+        <?php echo $name ?> <?php if ($atts['tooltip'] != '') { ?> <span class="dashicons dashicons-warning" tooltip="<?php echo $atts['tooltip']; ?>"></span> <?php } ?>
+    </label>
+    <textarea id="<?php echo $id; ?>" name="<?php echo $id; ?>" class="custom-form-control" rows="5" <?php echo ($atts['required'] == true) ? 'required="required"' : ''; ?> placeholder="<?php echo $atts['placeholder']; ?>"><?php echo $value; ?></textarea>
+    <?php
+            break;
         case 'select':
             ?>
     <label for="<?php echo $id; ?>">
-        <?php echo $name ?>
+        <?php echo $name ?> <?php if ($atts['tooltip'] != '') { ?> <span class="dashicons dashicons-warning" tooltip="<?php echo $atts['tooltip']; ?>"></span> <?php } ?>
     </label>
-    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" />
+    <select id="<?php echo $id; ?>" name="<?php echo $id; ?>" <?php echo ($atts['required'] == true) ? 'required="required"' : ''; ?>>
+        <?php if (!empty($atts['options'])) : ?>
+        <option value="" selected disabled><?php echo $atts['placeholder']; ?></option>
+        <?php foreach ($atts['options'] as $item) { ?>
+        <option value="<?php echo $item; ?>" <?php selected($value, $item); ?>><?php echo $item; ?></option>
+        <?php } ?>
+        <?php endif; ?>
+    </select>
     <?php
             break;
 
         case 'radio':
             ?>
     <label for="<?php echo $id; ?>">
-        <?php echo $name ?>
+        <?php echo $name ?> <?php if ($atts['tooltip'] != '') { ?> <span class="dashicons dashicons-warning" tooltip="<?php echo $atts['tooltip']; ?>"></span> <?php } ?>
     </label>
-    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" />
+    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" <?php echo ($atts['required'] == true) ? 'required="required"' : ''; ?> placeholder="<?php echo $atts['placeholder']; ?>" />
+    <?php
+            break;
+        case 'file':
+            ?>
+    <label for="<?php echo $id; ?>">
+        <?php echo $name ?> <?php if ($atts['tooltip'] != '') { ?> <span class="dashicons dashicons-warning" tooltip="<?php echo $atts['tooltip']; ?>"></span> <?php } ?>
+    </label>
+    <?php if (is_array($value)) : ?>
+    <?php $url =  ($value != '') ? $value['url'] : ''; ?>
+    <?php else : ?>
+    <?php $url = ''; ?>
+    <?php endif; ?>
+    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $url; ?>" class="custom-form-control" <?php echo ($atts['required'] == true) ? 'required="required"' : ''; ?> placeholder="<?php echo $atts['placeholder']; ?>" />
     <?php
             break;
 
         case 'checkbox':
             ?>
     <label for="<?php echo $id; ?>">
-        <?php echo $name ?>
+        <?php echo $name ?> <?php if ($atts['tooltip'] != '') { ?> <span class="dashicons dashicons-warning" tooltip="<?php echo $atts['tooltip']; ?>"></span> <?php } ?>
     </label>
-    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" />
+    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" <?php echo ($atts['required'] == true) ? 'required="required"' : ''; ?> placeholder="<?php echo $atts['placeholder']; ?>" />
     <?php
             break;
 
         default:
             ?>
     <label for="<?php echo $id; ?>">
-        <?php echo $name ?>
+        <?php echo $name ?> <?php if ($atts['tooltip'] != '') { ?> <span class="dashicons dashicons-warning" tooltip="<?php echo $atts['tooltip']; ?>"></span> <?php } ?>
     </label>
-    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" />
+    <input type="<?php echo $type; ?>" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" class="custom-form-control" <?php echo ($atts['required'] == true) ? 'required="required"' : ''; ?> placeholder="<?php echo $atts['placeholder']; ?>" />
     <?php
             break;
     }?>
