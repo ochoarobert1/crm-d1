@@ -76,98 +76,125 @@ class Crm_D1_Admin_Phase1
     {
         ?>
 <div class="custom-input-wrapper">
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'info_enviada', true);
         echo $this->loader->custom_meta_box_input('info_enviada', 'Información Enviada y Seguimiento', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'conf_visita', true);
         echo $this->loader->custom_meta_box_input('conf_visita', 'Confirmación de Visita', $value, 'date', array());
         ?>
+        </div>
     </div>
-    <div class="custom-input-col-6">
-
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Cotización del Banco</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'cot_banco', true);
-        echo $this->loader->custom_meta_box_input('cot_banco', 'Cotización del Banco', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('cot_banco_date', 'Fecha', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'cot_banco_file', true);
-        echo $this->loader->custom_meta_box_input('cot_banco_file', 'Archivo de Cotización del Banco', $value, 'file', array());
+        echo $this->loader->custom_meta_box_input('cot_banco_file', 'Archivo', $value, 'file', array());
         ?>
+        </div>
     </div>
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-6">
+            <?php
     $value = get_post_meta($post->ID, 'pro_venta', true);
         echo $this->loader->custom_meta_box_input('pro_venta', 'Proforma de Venta', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'pro_venta_file', true);
         echo $this->loader->custom_meta_box_input('pro_venta_file', 'Archivo de Proforma de Venta', $value, 'file', array());
         ?>
+        </div>
     </div>
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'banco_cliente', true);
         echo $this->loader->custom_meta_box_input('banco_cliente', 'Banco del Cliente', $value, 'select', array('placeholder' => __('Seleccione el banco del cliente', 'crm-d1'), 'options' => array('BNP', 'C.A.', 'Global', 'La Hipotecaria', 'Banistmo', 'Banco General', 'Otro')));
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'seguimiento_banco', true);
         echo $this->loader->custom_meta_box_input('seguimiento_banco', 'Seguimiento del Banco', $value, 'select', array('placeholder' => __('Seleccione el status actual', 'crm-d1'), 'options' => array('En Revisión', 'Comité', 'Devuelto para Corrección', 'Reingresado', 'Aprobado', 'Rechazado')));
         ?>
+        </div>
     </div>
-    <?php
+    <div class="group-wrapper">
+        <?php
         $value = get_post_meta($post->ID, 'carta_terminos', true);
         echo $this->loader->custom_meta_box_input('carta_terminos', 'Carta de Términos y Condiciones', $value, 'date', array());
         ?>
-    <div class="custom-input-col-6">
-        <?php
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Carta Promesa</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'carta_promesa_start', true);
-        echo $this->loader->custom_meta_box_input('carta_promesa_start', 'Carta Promesa (Fecha de Emisión)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('carta_promesa_start', 'Fecha de Emisión', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'carta_promesa_end', true);
-        echo $this->loader->custom_meta_box_input('carta_promesa_end', 'Carta Promesa (Fecha de Vencimiento)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('carta_promesa_end', 'Fecha de Vencimiento', $value, 'date', array());
         ?>
+        </div>
     </div>
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Carta Cesión</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'carta_cesion_start', true);
-        echo $this->loader->custom_meta_box_input('carta_cesion_start', 'Carta Cesión (Fecha de Emisión)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('carta_cesion_start', 'Fecha de Emisión', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'carta_cesion_end', true);
-        echo $this->loader->custom_meta_box_input('carta_cesion_end', 'Carta Cesión (Fecha de Emisión)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('carta_cesion_end', 'Fecha de Emisión', $value, 'date', array());
         ?>
+        </div>
     </div>
-    <?php
+
+    <div class="group-wrapper">
+        <?php
         $value = get_post_meta($post->ID, 'ficha_cliente', true);
         echo $this->loader->custom_meta_box_input('ficha_cliente', 'Expediente Completo / Ficha de Cliente', $value, 'date', array());
         ?>
-    <div class="custom-input-col-6">
-        <?php
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'contrato_compraventa', true);
         echo $this->loader->custom_meta_box_input('contrato_compraventa', 'Contrato Compra/Venta (Fecha de Emisión)', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'contrato_compraventa_file', true);
         echo $this->loader->custom_meta_box_input('contrato_compraventa_file', 'Archivo Contrato Compra/Venta', $value, 'file', array());
         ?>
+        </div>
     </div>
 </div>
 <?php

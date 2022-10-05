@@ -75,24 +75,77 @@ class Crm_D1_Admin_Phase5
     public function render_phase5_info_content($post)
     {
         ?>
-        <div class="custom-input-wrapper">
+<div class="custom-input-wrapper">
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Reservas</h2>
+        </div>
+        <div class="custom-input-col-6">
             <?php
-
-        $value = get_post_meta($post->ID, 'cobros_reservas', true);
-        echo $this->loader->custom_meta_box_input('cobros_reservas', 'Reservas', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'abono_inicial', true);
-        echo $this->loader->custom_meta_box_input('abono_inicial', 'Abono Inicial', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'gastos_legales', true);
-        echo $this->loader->custom_meta_box_input('gastos_legales', 'Gastos Legales', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'gastos_extras', true);
-        echo $this->loader->custom_meta_box_input('gastos_extras', 'Extras', $value, 'text', array());
-
+        $value = get_post_meta($post->ID, 'cobros_reservas_date', true);
+        echo $this->loader->custom_meta_box_input('cobros_reservas_date', 'Fecha de Recepción', $value, 'date', array());
         ?>
         </div>
-        <?php
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'cobros_reservas_file', true);
+        echo $this->loader->custom_meta_box_input('cobros_reservas_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Abono Inicial</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'abono_inicial_ammount', true);
+        echo $this->loader->custom_meta_box_input('abono_inicial_ammount', 'Monto', $value, 'text', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'abono_inicial_file', true);
+        echo $this->loader->custom_meta_box_input('abono_inicial_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Gastos Legales</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'gastos_legales_ammount', true);
+        echo $this->loader->custom_meta_box_input('gastos_legales_ammount', 'Monto', $value, 'text', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'gastos_legales_file', true);
+        echo $this->loader->custom_meta_box_input('gastos_legales_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Extras</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'gastos_extras_ammount', true);
+        echo $this->loader->custom_meta_box_input('gastos_extras_ammount', 'Monto', $value, 'text', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'gastos_extras_file', true);
+        echo $this->loader->custom_meta_box_input('gastos_extras_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+</div>
+<?php
     }
 
     /**

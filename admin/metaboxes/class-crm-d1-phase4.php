@@ -76,98 +76,217 @@ class Crm_D1_Admin_Phase4
     {
         ?>
 <div class="custom-input-wrapper">
-    <div class="custom-input-col-3">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Minuta de Cancelación Banco Interino</h2>
+        </div>
+        <div class="custom-input-col-3">
+            <?php
         $value = get_post_meta($post->ID, 'minuta_cancelacion_banco_interino_start', true);
-        echo $this->loader->custom_meta_box_input('minuta_cancelacion_banco_interino_start', 'Minuta de Cancelación Banco Interino (Fecha Solicitud)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('minuta_cancelacion_banco_interino_start', 'Fecha de Solicitud', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-3">
-        <?php
+        </div>
+        <div class="custom-input-col-3">
+            <?php
         $value = get_post_meta($post->ID, 'minuta_cancelacion_banco_interino_end', true);
-        echo $this->loader->custom_meta_box_input('minuta_cancelacion_banco_interino_end', 'Minuta de Cancelación Banco Interino (Fecha Recibido)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('minuta_cancelacion_banco_interino_end', 'Fecha de Recepción', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-3">
-        <?php
+        </div>
+        <div class="custom-input-col-3">
+            <?php
         $value = get_post_meta($post->ID, 'minuta_cancelacion_banco_interino_file', true);
-        echo $this->loader->custom_meta_box_input('minuta_cancelacion_banco_interino', 'Minuta de Cancelación Banco Interino (Archivo)', $value, 'file', array());
+        echo $this->loader->custom_meta_box_input('minuta_cancelacion_banco_interino', 'Archivo', $value, 'file', array());
         ?>
+        </div>
     </div>
-
-    <div class="custom-input-col-3">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Minuta de Compra/Venta de Promotora</h2>
+        </div>
+        <div class="custom-input-col-3">
+            <?php
         $value = get_post_meta($post->ID, 'minuta_compraventa_promotora_start', true);
-        echo $this->loader->custom_meta_box_input('minuta_compraventa_promotora_start', 'Minuta de Compra/Venta de Promotora (Fecha Solicitud)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('minuta_compraventa_promotora_start', 'Fecha de Solicitud', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-3">
-        <?php
+        </div>
+        <div class="custom-input-col-3">
+            <?php
         $value = get_post_meta($post->ID, 'minuta_compraventa_promotora_end', true);
-        echo $this->loader->custom_meta_box_input('minuta_compraventa_promotora_end', 'Minuta de Compra/Venta de Promotora (Fecha Recibido)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('minuta_compraventa_promotora_end', 'Fecha de Recepción', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-3">
-        <?php
+        </div>
+        <div class="custom-input-col-3">
+            <?php
         $value = get_post_meta($post->ID, 'minuta_compraventa_promotora_file', true);
-        echo $this->loader->custom_meta_box_input('minuta_compraventa_promotora_file', 'Minuta de Compra/Venta de Promotora (Archivo)', $value, 'file', array());
+        echo $this->loader->custom_meta_box_input('minuta_compraventa_promotora_file', 'Archivo', $value, 'file', array());
         ?>
+        </div>
     </div>
-
-    <div class="custom-input-col-3">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Minuta de Préstamo del Banco</h2>
+        </div>
+        <div class="custom-input-col-3">
+            <?php
         $value = get_post_meta($post->ID, 'minuta_prestamo_banco_start', true);
-        echo $this->loader->custom_meta_box_input('minuta_prestamo_banco_start', 'Minuta de Compra/Venta de Promotora (Fecha Solicitud)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('minuta_prestamo_banco_start', 'Fecha de Solicitud', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-3">
-        <?php
+        </div>
+        <div class="custom-input-col-3">
+            <?php
         $value = get_post_meta($post->ID, 'minuta_prestamo_banco_end', true);
-        echo $this->loader->custom_meta_box_input('minuta_prestamo_banco_end', 'Minuta de Compra/Venta de Promotora (Fecha Recibido)', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('minuta_prestamo_banco_end', 'Fecha de Recepción', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-3">
-        <?php
+        </div>
+        <div class="custom-input-col-3">
+            <?php
         $value = get_post_meta($post->ID, 'minuta_prestamo_banco_file', true);
-        echo $this->loader->custom_meta_box_input('minuta_prestamo_banco_file', 'Minuta de Compra/Venta de Promotora (Archivo)', $value, 'file', array());
+        echo $this->loader->custom_meta_box_input('minuta_prestamo_banco_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <?php
+        $value = get_post_meta($post->ID, 'protocolo_escritura', true);
+        echo $this->loader->custom_meta_box_input('protocolo_escritura', 'Protocolo de Escritura', $value, 'date', array());
         ?>
     </div>
-
-    <?php
-        $value = get_post_meta($post->ID, 'protocolo_escritura', true);
-        echo $this->loader->custom_meta_box_input('protocolo_escritura', 'Protocolo de Escritura', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'firma_protocolo_promotora', true);
-        echo $this->loader->custom_meta_box_input('firma_protocolo_promotora', 'Firma de Protocolo por Promotora', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'firma_protocolo_banco', true);
-        echo $this->loader->custom_meta_box_input('firma_protocolo_banco', 'Firma de Protocolo por Banco Interino', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'firma_protocolo_cliente', true);
-        echo $this->loader->custom_meta_box_input('firma_protocolo_cliente', 'Firma de Protocolo por Cliente', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'firma_protocolo_banco_cliente', true);
-        echo $this->loader->custom_meta_box_input('firma_protocolo_banco_cliente', 'Firma de Protocolo por Banco del Cliente', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'pago_impuestos', true);
-        echo $this->loader->custom_meta_box_input('pago_impuestos', 'Pagos de Impuestos', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'cierre_escritura_notaria', true);
-        echo $this->loader->custom_meta_box_input('cierre_escritura_notaria', 'Cierre Escritura en Notaría', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'inscripcion_cierre_registro', true);
-        echo $this->loader->custom_meta_box_input('inscripcion_cierre_registro', 'Inscripción de Escritura en Registro Público', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'desembolso_prestamo', true);
-        echo $this->loader->custom_meta_box_input('desembolso_prestamo', 'Desembolso Préstamo', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'desembolso_prestamo', true);
-        echo $this->loader->custom_meta_box_input('desembolso_prestamo', 'Desembolso del Préstamo', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'entrega_vivienda', true);
-        echo $this->loader->custom_meta_box_input('entrega_vivienda', 'Entrega de Vivienda', $value, 'text', array());
-
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Firma de Protocolo por Promotora</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+            $value = get_post_meta($post->ID, 'firma_protocolo_promotora_delivered', true);
+        echo $this->loader->custom_meta_box_input('firma_protocolo_promotora_delivered', 'Fecha Entregado', $value, 'date', array());
         ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'firma_protocolo_promotora_signed', true);
+        echo $this->loader->custom_meta_box_input('firma_protocolo_promotora_signed', 'Fecha Firmado', $value, 'date', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Firma de Protocolo por Banco Interino</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+            $value = get_post_meta($post->ID, 'firma_protocolo_banco_delivered', true);
+        echo $this->loader->custom_meta_box_input('firma_protocolo_banco_delivered', 'Fecha Entregado', $value, 'date', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'firma_protocolo_banco_signed', true);
+        echo $this->loader->custom_meta_box_input('firma_protocolo_banco_signed', 'Fecha Firmado', $value, 'date', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Firma de Protocolo por Cliente</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+            $value = get_post_meta($post->ID, 'firma_protocolo_cliente_delivered', true);
+        echo $this->loader->custom_meta_box_input('firma_protocolo_cliente_delivered', 'Fecha Entregado', $value, 'date', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'firma_protocolo_cliente_signed', true);
+        echo $this->loader->custom_meta_box_input('firma_protocolo_cliente_signed', 'Fecha Firmado', $value, 'date', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Firma de Protocolo por Banco del Cliente</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+            $value = get_post_meta($post->ID, 'firma_protocolo_banco_cliente_delivered', true);
+        echo $this->loader->custom_meta_box_input('firma_protocolo_banco_cliente_delivered', 'Fecha Entregado', $value, 'date', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'firma_protocolo_banco_cliente_signed', true);
+        echo $this->loader->custom_meta_box_input('firma_protocolo_banco_cliente_signed', 'Fecha Firmado', $value, 'date', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Pagos de Impuestos</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'pago_impuestos_date', true);
+        echo $this->loader->custom_meta_box_input('pago_impuestos_date', 'Fecha de Recepción', $value, 'date', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'pago_impuestos_file', true);
+        echo $this->loader->custom_meta_box_input('pago_impuestos_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Cierre Escritura en Notaría</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'cierre_escritura_notaria_date', true);
+        echo $this->loader->custom_meta_box_input('cierre_escritura_notaria_date', 'Fecha de Recepción', $value, 'date', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'cierre_escritura_notaria_file', true);
+        echo $this->loader->custom_meta_box_input('cierre_escritura_notaria_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Inscripción de Escritura en Registro Público</h2>
+        </div>
+        <div class="custom-input-col-12">
+            <?php
+        $value = get_post_meta($post->ID, 'inscripcion_cierre_registro', true);
+        echo $this->loader->custom_meta_box_input('inscripcion_cierre_registro', 'Fecha de Solicitud', $value, 'date', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Desembolso Préstamo</h2>
+        </div>
+        <div class="custom-input-col-3">
+            <?php
+        $value = get_post_meta($post->ID, 'desembolso_prestamo_start', true);
+        echo $this->loader->custom_meta_box_input('desembolso_prestamo_start', 'Fecha de Solicitud', $value, 'date', array());
+        ?>
+        </div>
+        <div class="custom-input-col-3">
+            <?php
+        $value = get_post_meta($post->ID, 'desembolso_prestamo_end', true);
+        echo $this->loader->custom_meta_box_input('desembolso_prestamo_end', 'Fecha de Recepción', $value, 'date', array());
+        ?>
+        </div>
+        <div class="custom-input-col-3">
+            <?php
+        $value = get_post_meta($post->ID, 'desembolso_prestamo_file', true);
+        echo $this->loader->custom_meta_box_input('desembolso_prestamo_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
 </div>
 <?php
     }

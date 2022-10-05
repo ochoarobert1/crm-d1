@@ -75,21 +75,60 @@ class Crm_D1_Admin_Phase6
     public function render_phase6_info_content($post)
     {
         ?>
-        <div class="custom-input-wrapper">
+<div class="custom-input-wrapper">
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Coordinacion con el Cliente</h2>
+        </div>
+        <div class="custom-input-col-12">
             <?php
-
         $value = get_post_meta($post->ID, 'coordinacion_cliente', true);
-        echo $this->loader->custom_meta_box_input('coordinacion_cliente', 'Coordinacion con el Cliente', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'entrega_llaves', true);
-        echo $this->loader->custom_meta_box_input('entrega_llaves', 'Entrega de llaves', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'garantias', true);
-        echo $this->loader->custom_meta_box_input('garantias', 'Garantías', $value, 'text', array());
-
+        echo $this->loader->custom_meta_box_input('coordinacion_cliente', 'Coordinacion con el Cliente', $value, 'date', array());
         ?>
         </div>
-        <?php
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Entrega de llaves</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'entrega_llaves_ammount', true);
+        echo $this->loader->custom_meta_box_input('entrega_llaves_ammount', 'Fecha de Recepción', $value, 'text', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'entrega_llaves_file', true);
+        echo $this->loader->custom_meta_box_input('entrega_llaves_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Garantías</h2>
+        </div>
+        <div class="custom-input-col-3">
+            <?php
+        $value = get_post_meta($post->ID, 'garantias_start', true);
+        echo $this->loader->custom_meta_box_input('garantias_start', 'Fecha de Inicio', $value, 'date', array());
+        ?>
+        </div>
+        <div class="custom-input-col-3">
+            <?php
+        $value = get_post_meta($post->ID, 'garantias_end', true);
+        echo $this->loader->custom_meta_box_input('garantias_end', 'Fecha de Vencimiento', $value, 'date', array());
+        ?>
+        </div>
+        <div class="custom-input-col-3">
+            <?php
+        $value = get_post_meta($post->ID, 'garantias_file', true);
+        echo $this->loader->custom_meta_box_input('garantias_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+</div>
+<?php
     }
 
     /**

@@ -76,77 +76,98 @@ class Crm_D1_Admin_Phase3
     {
         ?>
 <div class="custom-input-wrapper">
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Declaración Jurada</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'declaracion_jurada', true);
-        echo $this->loader->custom_meta_box_input('declaracion_jurada', 'Declaración Jurada', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('declaracion_jurada', 'Fecha de Recepción', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'declaracion_jurada_file', true);
-        echo $this->loader->custom_meta_box_input('declaracion_jurada_file', 'Declaración Jurada (Archivo)', $value, 'file', array());
+        echo $this->loader->custom_meta_box_input('declaracion_jurada_file', 'Archivo', $value, 'file', array());
         ?>
+        </div>
     </div>
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'cedula_titular', true);
         echo $this->loader->custom_meta_box_input('cedula_titular', 'Cédula Titular', $value, 'file', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'cedula_certificado', true);
         echo $this->loader->custom_meta_box_input('cedula_certificado', 'Cédula del Beneficiario / Certificado de Nacimiento', $value, 'file', array());
         ?>
+        </div>
     </div>
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'carta_trabajo', true);
         echo $this->loader->custom_meta_box_input('carta_trabajo', 'Carta de Trabajo', $value, 'file', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'ficha_css', true);
         echo $this->loader->custom_meta_box_input('ficha_css', 'Ficha CSS', $value, 'file', array());
         ?>
+        </div>
     </div>
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'carta_aprobacion_banco', true);
         echo $this->loader->custom_meta_box_input('carta_aprobacion_banco', 'Carta Aprobación del Banco', $value, 'file', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'cert_no_propiedad', true);
         echo $this->loader->custom_meta_box_input('cert_no_propiedad', 'Certificado de No Propiedad del Registro Público', $value, 'file', array());
         ?>
+        </div>
     </div>
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Contrato de Compra/Venta firmado por ambas partes</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'contrato_compraventa_signed', true);
-        echo $this->loader->custom_meta_box_input('contrato_compraventa_signed', 'Contrato de Compra/Venta firmado por ambas partes', $value, 'date', array());
+        echo $this->loader->custom_meta_box_input('contrato_compraventa_signed', 'Fecha de Recepción', $value, 'date', array());
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'contrato_compraventa_signed_file', true);
-        echo $this->loader->custom_meta_box_input('contrato_compraventa_signed_file', 'Contrato de Compra/Venta firmado por ambas partes (Archivo)', $value, 'file', array());
+        echo $this->loader->custom_meta_box_input('contrato_compraventa_signed_file', 'Archivo', $value, 'file', array());
         ?>
+        </div>
     </div>
-    <div class="custom-input-col-6">
-        <?php
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Seguimiento</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'seguimiento_fase3', true);
-        echo $this->loader->custom_meta_box_input('seguimiento_fase3', 'Seguimiento', $value, 'select', array('placeholder' => __('Seleccione el estatus actual', 'crm-d1'), 'options' => array('Recibido', 'En Revisión', 'Vo. Bo.', 'Aprobado', 'Firma Y Resolución')));
+        echo $this->loader->custom_meta_box_input('seguimiento_fase3', 'Estado Actual', $value, 'select', array('placeholder' => __('Seleccione el estatus actual', 'crm-d1'), 'options' => array('Recibido', 'En Revisión', 'Vo. Bo.', 'Aprobado', 'Firma Y Resolución')));
         ?>
-    </div>
-    <div class="custom-input-col-6">
-        <?php
+        </div>
+        <div class="custom-input-col-6">
+            <?php
         $value = get_post_meta($post->ID, 'seguimiento_fase3_file', true);
-        echo $this->loader->custom_meta_box_input('seguimiento_fase3_file', 'Seguimiento (Archivo)', $value, 'file', array());
+        echo $this->loader->custom_meta_box_input('seguimiento_fase3_file', 'Archivo', $value, 'file', array());
         ?>
+        </div>
     </div>
 </div>
 <?php

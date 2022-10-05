@@ -37,17 +37,34 @@ CUSTOM POST METABOX
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.custom-input-wrapper h2 {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+}
+.custom-input-wrapper .group-wrapper {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+.custom-input-wrapper .group-wrapper:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 0;
+}
 .custom-input-wrapper .custom-input-col-3 {
   flex: 0 0 33%;
-  margin-bottom: 1.5rem;
 }
 .custom-input-wrapper .custom-input-col-6 {
   flex: 0 0 50%;
-  margin-bottom: 1.5rem;
 }
 .custom-input-wrapper .custom-input-col-12 {
   flex: 0 0 100%;
-  margin-bottom: 1.5rem;
 }
 .custom-input-wrapper .custom-input-form-container {
   flex: 0 0 100%;

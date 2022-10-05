@@ -75,18 +75,43 @@ class Crm_D1_Admin_Phase7
     public function render_phase7_info_content($post)
     {
         ?>
-        <div class="custom-input-wrapper">
+<div class="custom-input-wrapper">
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>Agua</h2>
+        </div>
+        <div class="custom-input-col-6">
             <?php
-
-        $value = get_post_meta($post->ID, 'servicios_agua', true);
-        echo $this->loader->custom_meta_box_input('servicios_agua', 'Agua', $value, 'text', array());
-
-        $value = get_post_meta($post->ID, 'servicios_ptar', true);
-        echo $this->loader->custom_meta_box_input('servicios_ptar', 'PTAR', $value, 'text', array());
-
+        $value = get_post_meta($post->ID, 'servicios_agua_ammount', true);
+        echo $this->loader->custom_meta_box_input('servicios_agua_ammount', 'Monto', $value, 'text', array());
         ?>
         </div>
-        <?php
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'servicios_agua_file', true);
+        echo $this->loader->custom_meta_box_input('gservicios_agua_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+    <div class="group-wrapper">
+        <div class="custom-input-col-12">
+            <h2>PTAR</h2>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'servicios_ptar_ammount', true);
+        echo $this->loader->custom_meta_box_input('servicios_ptar_ammount', 'Monto', $value, 'text', array());
+        ?>
+        </div>
+        <div class="custom-input-col-6">
+            <?php
+        $value = get_post_meta($post->ID, 'servicios_ptar_file', true);
+        echo $this->loader->custom_meta_box_input('servicios_ptar_file', 'Archivo', $value, 'file', array());
+        ?>
+        </div>
+    </div>
+</div>
+<?php
     }
 
     /**
